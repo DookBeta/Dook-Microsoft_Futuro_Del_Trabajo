@@ -1,0 +1,33 @@
+<div class="swipe-bar"></div>
+<ion-content>
+
+  <ion-avatar class="user-photo">
+    <img src="{{userImg}}">
+  </ion-avatar>
+  
+  <ion-card>
+    <ion-list lines="none" style="padding-top: 10vh;">
+      <ion-item *ngFor="let detail of userData, let i = index">
+        <ion-label style="opacity: .4;" position="floating">{{detail.label}}</ion-label>
+        <ion-input (ionChange)="updateValues($event,detail)" (ionBlur)="triggerChange()" value={{detail.data}} inputmode={{detail.type}}></ion-input>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+
+
+  <ion-list class="toggles" lines="none">
+    <ion-item (ionChange)="onClick($event)">
+      <ion-label>Modo Nocturno</ion-label>
+      <ion-toggle slot="end" color="dark"></ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-label>Notificaciones</ion-label>
+      <ion-toggle slot="end" color="dark"></ion-toggle>
+    </ion-item>
+  </ion-list>
+  <!-- <div class="footer-buttons">
+  <ion-button expand="block" fill="outline" color="dark">Cancelar</ion-button>
+
+  <ion-button expand="block">Guardar</ion-button>
+</div> -->
+</ion-content>

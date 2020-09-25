@@ -1,0 +1,40 @@
+.inputs {
+    position: relative;
+    top: 25vh;
+
+   ion-button{
+       margin-top: 5vh;
+        padding-left: 10px;
+        padding-right: 10px;
+        --background: var(--ion-color-dook);
+        --box-shadow: 0 0 16px 3px #45aff769;
+    }
+}
+
+.title {
+    padding: 20px;
+    position: relative;
+    top: 25vh;
+    font-family: "Neue Haas Grotesk Display Pro";
+    font-weight: 400;
+    img {
+        width: 3rem;
+    }
+}
+ion-content {
+    --background: var(--ion-color-light);
+}
+
+ion-item {
+    --background: none;
+}
+
+.hyperlinks {
+    text-align: center;
+    opacity: 0.3;
+    bottom: 10px;
+    width: 100%;
+    ion-label {
+        text-decoration: underline;
+    }
+}

@@ -1,0 +1,47 @@
+<div class="swipe-bar"></div>
+<ion-toolbar *ngIf="!updating">
+  <ion-buttons slot="secondary">
+    <ion-button color="danger" fill="clear" (click)="cancel()">
+      Cancelar
+    </ion-button>
+  </ion-buttons>
+  <ion-buttons slot="primary">
+    <ion-button color="primary" fill="clear" (click)="addClicked()">
+      Listo
+    </ion-button>
+  </ion-buttons>
+</ion-toolbar>
+
+<ion-toolbar *ngIf="updating">
+  <ion-buttons slot="secondary">
+    <ion-button color="danger" fill="clear" (click)="delete()">
+      Eliminar
+    </ion-button>
+  </ion-buttons>
+  <ion-buttons slot="primary">
+    <ion-button color="primary" fill="clear" (click)="update()">
+      Actualizar
+    </ion-button>
+  </ion-buttons>
+</ion-toolbar>
+
+
+
+<ion-content>
+  <h1>
+    Agregar Experiencia
+  </h1>
+
+  <ion-item>
+    <ion-label position="floating">Nombre de la actividad</ion-label>
+    <ion-input *ngIf="updating" [value]="element.name" (ionChange)="on('name',$event)"></ion-input>
+    <ion-input *ngIf="!updating" (ionChange)="on('name',$event)"></ion-input>
+  </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Cuentanos que hicisite</ion-label>
+      <ion-textarea *ngIf="!updating" (ionChange)="on('decription',$event)" auto-grow='true' placeholder="Describe tu experiecia aqui. Trata de ser detallado, te ayudará a resaltar..."></ion-textarea>
+      <ion-textarea *ngIf="updating" [value]="element.decription" (ionChange)="on('decription',$event)" auto-grow='true' placeholder="Describe tu experiecia aqui. Trata de ser detallado, te ayudará a resaltar..."></ion-textarea>
+    </ion-item>
+
+</ion-content>

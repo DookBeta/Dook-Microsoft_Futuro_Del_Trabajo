@@ -1,0 +1,44 @@
+<div class="swipe-bar"></div>
+<ion-toolbar>
+  <ion-buttons slot="secondary">
+    <ion-button color="danger" fill="clear" (click)="cancel()">
+      Cancelar
+    </ion-button>
+  </ion-buttons>
+  <ion-buttons slot="primary">
+    <ion-button color="primary" fill="clear" (click)="addClicked()">
+      Listo
+    </ion-button>
+  </ion-buttons>
+</ion-toolbar>
+
+
+<ion-content>
+  <h1>
+    Agregar Habilidad
+  </h1>
+
+  <ion-item>
+    <!-- <ion-auto-complete [(ngModel)]="element"
+                  [value] = "element"
+                   [multi]="false"
+                   [dataProvider]="provider"
+                   [clearInvalidInput] = "true"
+                   [disabled]="false"
+                   [maxResults]="8"
+                   [removeButtonColor]="'dark'"
+                   (ionAutoInput)="on('ionAutoInput', $event)"
+                   [useIonInput]="true"
+                   (itemsChange)="on('itemsChange', $event)"
+                   (itemsCleared)="on('itemsCleared', $event)"
+                   (itemsHidden)="on('itemsHidden', $event)"
+                   (itemRemoved)="on('itemRemoved', $event)"
+                   (itemSelected)="on('itemSelected', $event)"
+                   (itemsShown)="on('itemsShown', $event)"></ion-auto-complete> -->
+                   <ion-input [(ngModel)]="element"
+                   (ionChange)="on('ionChange',$event)"></ion-input>
+  </ion-item>
+
+</ion-content>
+
+

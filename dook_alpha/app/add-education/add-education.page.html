@@ -1,0 +1,74 @@
+<div class="swipe-bar"></div>
+<ion-toolbar *ngIf="!updating">
+  <ion-buttons slot="secondary">
+    <ion-button color="danger" fill="clear" (click)="cancel()">
+      Cancelar
+    </ion-button>
+  </ion-buttons>
+  <ion-buttons slot="primary">
+    <ion-button color="primary" fill="clear" (click)="addClicked()">
+      Listo
+    </ion-button>
+  </ion-buttons>
+</ion-toolbar>
+
+<ion-toolbar *ngIf="updating">
+  <ion-buttons slot="secondary">
+    <ion-button color="danger" fill="clear" (click)="delete()">
+      Eliminar
+    </ion-button>
+  </ion-buttons>
+  <ion-buttons slot="primary">
+    <ion-button color="primary" fill="clear" (click)="update()">
+      Actualizar
+    </ion-button>
+  </ion-buttons>
+</ion-toolbar>
+
+
+<ion-content>
+  <h1>
+    Agregar Educacion
+  </h1>
+  <ion-item>
+    <ion-label>Estudiando Actualmente</ion-label>
+    <ion-toggle color="primary" (ionChange)="checked()"></ion-toggle>
+  </ion-item>
+
+  <ion-item>
+    <ion-auto-complete [(model)]="selected"
+                    [value] = "selected"
+                   [multi]="false"
+                   [dataProvider]="provider"
+                   [clearInvalidInput] = "false"
+                   [disabled]="false"
+                   [maxResults]="3"
+                   [options] = '{placeholder: "Institucion"}'
+                   [removeButtonColor]="'dark'"
+                   (ionAutoInput)="on('ionAutoInput', $event)"
+                   [useIonInput]="true"
+                   (itemsChange)="on('itemsChange', $event)"
+                   (itemsCleared)="on('itemsCleared', $event)"
+                   (itemsHidden)="on('itemsHidden', $event)"
+                   (itemRemoved)="on('itemRemoved', $event)"
+                   (itemSelected)="on('itemSelected', $event)"
+                   (itemsShown)="on('itemsShown', $event)"></ion-auto-complete>
+  </ion-item>
+    
+  <ion-item>
+      <ion-input placeholder="Carrera" type="text" [(ngModel)]="element.career" value="{{element.career}}" (ionChange)="carrerSelected($event)"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Fecha Inicio</ion-label>
+    <ion-datetime (ionChange)="startDate($event)" [(ngModel)]="element.timeStart" value="{{element.timeStart}}" min="1900-02" max="{{currentYear}}"
+      displayFormat="MMM, YYYY"
+      monthShortNames="Enero, Febrero, Marzo, Abril, Mayo, Junio, Julio, Agosto, Septiembre, Octubre, Noviembre, Diciembre"></ion-datetime>
+  </ion-item>
+
+  <ion-item *ngIf="!current">
+    <ion-label>Fecha Graduación</ion-label>
+    <ion-datetime (ionChange)="endDate($event)" [(ngModel)]="element.timeEnd" value="{{element.timeEnd}}" min="1990-02" max="2050"
+      displayFormat="MMM, YYYY"
+      monthShortNames="Enero, Febrero, Marzo, Abril, Mayo, Junio, Julio, Agosto, Septiembre, Octubre, Noviembre, Diciembre"></ion-datetime>
+  </ion-item>
+</ion-content>

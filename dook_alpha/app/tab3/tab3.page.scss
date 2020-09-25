@@ -1,0 +1,23 @@
+ion-content ion-toolbar {
+  --background: translucent
+}
+
+h2{
+  font-family: "Neue Haas Grotesk Display Pro";
+  padding: 20px;
+  font-weight: 200;
+}
+
+.notification {
+  height: 50px;
+  width: 50px;
+  border-radius: 20px;
+  background-color: var(--ion-color-notification);
+  display: flex;
+  text-align: center;
+  ion-icon {
+      margin: auto;
+      font-size: 6vw;
+      color: var(--ion-color-medium-contrast);
+  }
+}

@@ -1,0 +1,229 @@
+:host{
+  //background-color: var(--ion-backgorund-color);
+}
+
+
+.last{
+  
+  margin-bottom: 80px;
+  
+}
+.upper-section{
+  height: 20vh;
+  background-color: var(--color-checked);
+}
+.banner{
+  opacity: .9;
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  text-align: center;
+  top: 22vh;
+  opacity: .9;
+  .banner__figure{
+    width: 50%;
+    background-color: #5677D8;
+    clip-path: polygon(0 0, 45% 0, 100% 100%, 0 100%);
+    background: linear-gradient(to right, #f953c6, #b91d73);
+    text-align: left;
+    img{
+      margin-top: 10px;
+    }
+  }
+}
+
+.banner.transform{
+  transition: linear .25s;
+  opacity: 0;
+}
+
+canvas{
+  position: absolute;
+  top: 17vh;
+}
+
+.head{
+  position: absolute;
+    width: 100%;
+    top: 25vh;
+  ion-card{
+    --background: linear-gradient(45deg, var(--ion-color-success-shade), var(--ion-color-success-tint));
+    margin: 0;
+    padding: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+    ion-card-subtitle{
+      color: var(--ion-color-light-shade);
+    }
+    ion-card-title{
+      color: var(--ion-color-light);
+    }
+  }
+}
+
+
+ion-grid{
+  font-family: "Montserrat";
+  color: var(--ion-color-notification);
+  .total{
+    padding-left: 12px;
+    display: block;
+    h1{
+      font-size: 3em;
+      margin-bottom: 0;
+      font-weight: bold;
+    }
+    p{
+      margin-top: 0;
+      font-size: 12px;
+    }
+  }
+}
+
+ion-content{
+  transform: translate3d(0,15vh,0);
+  --background: var(--ion-background-color);
+  transition: .5s;
+  padding-bottom: 17vh;
+}
+
+
+ion-content.transform{
+  transform: translate3d(0,3vh,0);
+}
+
+.segment-wrapper{
+  transform: translate3d(0,15vh,0);  
+  transition: .5s;
+  padding-left: 15px;
+  --background: var(--ion-color-light-tint);
+  border-radius: 0;
+}
+
+.segment-wrapper.transform{
+  transform: translate3d(0,3vh,0);
+  ion-segment-button{
+    min-height: 40px;
+    --border-radius: 8px;
+  }
+}
+
+.content-wrapper{
+  height: 100%;
+  background-color:  var(--ion-backgorund-color);
+  color: black;
+  padding: 5vw;
+  overflow: scroll;
+  padding-bottom: 35vh;
+  scroll-behavior: smooth;
+}
+
+.scrollmenu {
+  overflow-x: scroll;
+  white-space: nowrap;
+  width: calc(100% - 32px);
+  position: relative;
+  left: 16px;
+}
+
+.scrollmenu ion-chip {
+  display: inline-block;
+  
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+ion-grid.icons{
+  --ion-grid-columns: 20;
+  margin-left: 5vw;
+  color: black;
+  ion-icon{
+      font-size: 25px;
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 3vw;
+  }
+  ion-label{
+      text-align: center;
+      vertical-align: middle;
+      display: inline-block;
+  }
+}
+
+ 
+
+.chips{
+  text-align: center;
+  margin-bottom: 1vh;
+  margin-top: 1vh;
+  ion-chip{
+      font-family: "Brandon Grotesque";
+      font-weight: 400;
+      --background: none;
+  }
+}
+
+.offer-cards{
+  ion-card{
+    margin-top: 0;
+    border-radius: 15px;
+    font-family: "Brandon Grotesque";
+    ion-card-title{
+        font-size: 17px;
+        font-weight: 500;
+    }
+    ion-card-header{
+        padding:0;
+    }
+    p{
+        font-size: 12px;
+        font-weight: 400;
+        margin-top: 0;
+        color: #8C8C8C;
+    }
+    ion-card-content{
+        overflow: hidden;
+        text-overflow: ellipsis;
+        padding-bottom: 0;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2; /* number of lines to show */
+    }
+}
+}
+
+
+ion-segment-button{
+
+  --color: var(--ion-color-medium);
+  --border-color: none;
+  --color-checked: rgba(var(--checked, --ion-color-primary),1);
+  --indicator-color: rgba(var(--checked, "56, 128, 255"),.2);
+  --border-radius: 15px;
+  --padding-end: 15px;
+  --indicator-box-shadow: none;
+    
+  min-height: 50px;
+  min-width: fit-content;
+  line-height: 1.5rem !important;
+  margin: 10px;
+  margin-left: 0px;
+  margin-right: 0px;
+  ion-label{
+    font-family: 'Montserrat';
+    font-weight: normal;
+    padding-left: 10px;
+  }
+}
+
+.progress-ring {
+  transition: linear 0.35s;
+  // axis compensation
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+}
+

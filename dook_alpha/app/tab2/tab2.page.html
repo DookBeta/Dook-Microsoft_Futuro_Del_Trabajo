@@ -1,0 +1,153 @@
+
+<div class="upper-section">
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-row class="total">
+          <h1>{{total}}</h1>
+          <p>Oportunidades</p>
+        </ion-row>
+        <ion-row>
+          <ion-col *ngFor="let section of offersCircle"
+            style="min-width: fit-content; padding-top: 0; padding-right: 0;">
+            <ion-icon [style.color]="section.stroke" name="ellipse" style="font-size: 10px;"></ion-icon>
+            <ion-label style="padding-left: 3px;">{{section.amount}}</ion-label>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col *ngFor="let section of offersCircle"
+            style="min-width: fit-content; padding-top: 0; padding-right: 0;">
+            <ion-label style="padding-left: 3px; font-size: 8px; vertical-align: top;">{{section.type}}</ion-label>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+      <ion-col>
+        <div>
+          <svg class="progress-ring" width="100%" height="100%">
+            <g>
+              <circle *ngFor="let circle of offersCircle" class="progress-ring__circle" stroke-linecap="round"
+                [attr.stroke]="circle.stroke" [attr.stroke-dashoffset]="circle.percentage"
+                [attr.stroke-dasharray]="circle.strokeDasharray" stroke-width="7" fill="transparent"
+                [attr.r]="circle.radius" cx="50%" cy="50%" />
+            </g>
+          </svg>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <div class="banner" [ngClass]="{'transform':transform}">
+    <ion-card>
+    
+      <ion-card-content style="max-height: 10vh; padding: 0; display: flex;">
+       <div class="banner__figure">
+         <img style="max-height: 10vh;" src="../../assets/images/undraw_newspaper_k72w.svg">
+       </div>
+       <ion-title style="
+       padding: 0;
+       text-align: left;
+       font-size: .8rem;
+       ">Bienvenido <b>{{userName}}</b>,<br>gracias por ayudarnos</ion-title>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+</div>
+<!-- <canvas #barChart></canvas> -->
+<!-- <div class="head">
+  <ion-card>
+    <ion-card-title>
+    </ion-card-title>
+    <ion-card-subtitle>
+      Entra ahora!
+    </ion-card-subtitle>
+  </ion-card>
+</div> -->
+
+<ion-segment class="segment-wrapper" [ngClass]="{'transform':transform}" scrollable mode="ios"
+  [(ngModel)]="segmentModel" (ionChange)="segmentChanged($event)">
+  <ion-segment-button value="1Todos" layout="icon-start">
+    <ion-icon name="list-outline"></ion-icon>
+    <ion-label>Todos</ion-label>
+  </ion-segment-button>
+  <ion-segment-button value="2Eventos" layout="icon-start">
+    <ion-icon name="newspaper-outline"></ion-icon>
+    <ion-label>Eventos</ion-label>
+  </ion-segment-button>
+  <ion-segment-button value="3Becas" layout="icon-start">
+    <ion-icon name="medal-outline"></ion-icon>
+    <ion-label>Becas</ion-label>
+  </ion-segment-button>
+  <ion-segment-button value="4Pasantias" layout="icon-start">
+    <ion-icon name="briefcase-outline"></ion-icon>
+    <ion-label>Pasantías</ion-label>
+  </ion-segment-button>
+
+</ion-segment>
+
+<ion-content [ngClass]="{'transform':transform}">
+  <p #trigger></p>
+  <div class="offer-cards" *ngFor="let Offer of Offers; let i = index; let last = last" [ngClass]="{'last': last}">
+    <div class="scrollmenu">
+      <ion-chip *ngIf="Offer.payment" color="success" (click)="goToInterests('$', 'cost', Offers)">
+        <ion-label>$</ion-label>
+      </ion-chip>
+      <ion-chip *ngIf="Offer.featured" color="warning" (click)="goToInterests('Featured','feat', Offers)">
+        <ion-icon name="star"></ion-icon>
+        <ion-label>Featured</ion-label>
+      </ion-chip>
+      <ion-chip color="secondary" (click)="goToInterests(Offer['aofi'],'aofi', Offers)">
+        <ion-label>{{Offer['aofi']}}</ion-label>
+      </ion-chip>
+      <ion-chip *ngFor="let SofI of Offer['sofi']" color="tertiary" (click)="goToInterests(SofI,'sofi',Offers)">
+        <ion-label>{{SofI}}</ion-label>
+      </ion-chip>
+    </div>
+
+
+    <ion-card>
+      <ion-card-header>
+        <ion-grid>
+          <ion-row>
+            <ion-col size="3" style="margin: auto;">
+              <ion-img style="border-radius: 100% !important; transform: scale(.8); overflow: hidden;"
+                [src]="Offer.logo"></ion-img>
+            </ion-col>
+            <ion-col style="padding-top: 15px;" (click)="cardPressed(Offer)">
+              <ion-row>
+                <ion-card-title>{{Offer.title}}</ion-card-title>
+              </ion-row>
+              <ion-row>
+                <p>{{Offer.location}}</p>
+              </ion-row>
+            </ion-col>
+            <ion-col size="1">
+              <ion-icon (click)="offerService.favorite(Offer)" style="float: right; font-size: 1.5rem;"
+                color={{Offer.icon.color}} name={{Offer.icon.name}}></ion-icon>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-header>
+
+      <ion-card-content>
+        {{Offer.content}}
+      </ion-card-content>
+
+      <div class="chips" (click)="cardPressed(Offer)">
+        <ion-chip>
+          <ion-icon name="glasses-outline" color="medium"></ion-icon>
+          <ion-label>{{Offer.level}}</ion-label>
+        </ion-chip>
+        <ion-chip>
+          <ion-icon name="time-outline" color="medium"></ion-icon>
+          <ion-label>{{Offer.duration}}</ion-label>
+        </ion-chip>
+        <ion-chip>
+          <ion-icon name="calendar-outline" color="medium"></ion-icon>
+          <ion-label>{{Offer.date | date: 'dd/MM/yy'}}</ion-label>
+        </ion-chip>
+      </div>
+    </ion-card>
+
+  </div>
+</ion-content>

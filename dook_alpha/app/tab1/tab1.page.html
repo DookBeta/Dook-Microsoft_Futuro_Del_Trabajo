@@ -1,0 +1,265 @@
+<ion-header [ngClass]="{'hide': hide, 'show': show}">
+  <!-- <app-explore-container></app-explore-container> -->
+  <ion-grid>
+    <ion-row class="header-grid">
+      <ion-col>
+        <ion-searchbar autocomplete="on" autocorrect="on" class="searchBar" showCancelButton="focus"
+          placeholder="Buscar" enterkeyhint="search" (ionFocus)="searchBarFocused()" (ionCancel)="searchBarCancel()"
+          (ionChange)="search($event)" clearIcon></ion-searchbar>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-header>
+
+<div class="active-search" *ngIf="searchBarStatus">
+  <div class="scrollmenu">
+    <ion-chip *ngIf="this.clearFilter" (click)="clearFilters()" color="danger">
+      <ion-label style="color: var(--ion-color-danger);">Clear</ion-label>
+    </ion-chip>
+    <ion-chip *ngFor="let filter of filters; let i = index" color={{filter.color}} (click)="filterOpts(filter, i)">
+      <ion-icon name={{filter.icon}}></ion-icon>
+      <ion-label>{{filter.text}}</ion-label>
+      <ion-icon name="chevron-down-outline"></ion-icon>
+    </ion-chip>
+    <!-- <ion-chip color="medium" (click)="durationFilter()">
+    <ion-icon name="time-outline"></ion-icon>
+    <ion-label>Duration</ion-label>
+    <ion-icon name="chevron-down-outline"></ion-icon>
+</ion-chip>
+<ion-chip color="medium" (click)="locationFilter()">
+  <ion-icon name="location-outline"></ion-icon>
+  <ion-label>Location</ion-label>
+  <ion-icon name="chevron-down-outline"></ion-icon>
+</ion-chip>
+<ion-chip color="medium" (click)="costFilter()">
+  <ion-icon name="cash-outline"></ion-icon>
+  <ion-label>Cost</ion-label>
+  <ion-icon name="chevron-down-outline"></ion-icon>
+</ion-chip> -->
+  </div>
+  <ion-content>
+    <div class="offer-cards" *ngFor="let Offer of filteredOffers; let last = last" [ngClass]="{'last': last}">
+      <div class="scrollmenu">
+        <ion-chip *ngIf="Offer.featured" color="warning" (click)="goToInterests('Featured','feat',Offers)">
+          <ion-icon name="star"></ion-icon>
+          <ion-label>Featured</ion-label>
+        </ion-chip>
+        <ion-chip color="secondary" (click)="goToInterests(Offer['aofi'],'aofi',Offers)">
+          <ion-label>{{Offer['aofi']}}</ion-label>
+        </ion-chip>
+        <ion-chip *ngFor="let SofI of Offer['sofi']" color="tertiary" (click)="goToInterests(SofI, 'sofi',Offers)">
+          <ion-label>{{SofI}}</ion-label>
+        </ion-chip>
+      </div>
+
+
+      <ion-card>
+        <ion-card-header>
+          <ion-grid>
+            <ion-row>
+              <ion-col size="3" style="margin: auto;">
+                <ion-img style="border-radius: 100% !important; transform: scale(.8); overflow: hidden;" [src]="Offer.logo"></ion-img>
+              </ion-col>
+              <ion-col style="padding-top: 15px;"(click)="cardPressed(Offer)">
+                <ion-row>
+                  <ion-card-title>{{Offer.title}}</ion-card-title>
+                </ion-row>
+                <ion-row>
+                  <p>{{Offer.location}}</p>
+                </ion-row>
+              </ion-col>
+              <ion-col size="1">
+                <ion-icon (click)="offerService.favorite(Offer)" style="float: right; font-size: 1.5rem;" color={{Offer.icon.color}} name={{Offer.icon.name}}></ion-icon>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card-header>
+
+        <div class="chips" (click)="cardPressed(Offer)">
+          <ion-chip>
+            <ion-icon name="glasses-outline" color="medium"></ion-icon>
+            <ion-label>{{Offer.level}}</ion-label>
+          </ion-chip>
+          <ion-chip>
+            <ion-icon name="time-outline" color="medium"></ion-icon>
+            <ion-label>{{Offer.duration}}</ion-label>
+          </ion-chip>
+          <ion-chip>
+            <ion-icon name="calendar-outline" color="medium"></ion-icon>
+            <ion-label>{{Offer.date | date: 'dd/MM/yy'}}</ion-label>
+          </ion-chip>
+        </div>
+      </ion-card>
+    </div>
+  </ion-content>
+</div>
+
+
+<ion-content *ngIf="!searchBarStatus" [scrollEvents]="true" (ionScroll)="logScrolling($event)" fullscreen class="offer-content">
+
+
+  <!-- Filtros -->
+
+  <!-- <div class="filter-options" [ngClass]="{'active':this.filterActive}">
+        <ion-grid>
+            <ion-row><ion-label>NIVEL</ion-label></ion-row>
+            <ion-row>
+                <ion-col *ngFor="let nivel of niveles; let i = index">
+                    <ion-icon name="checkmark-outline" (click)="activeNivel(i)" [ngClass]="{'active':nivel.active}"></ion-icon>
+                    <ion-label (click)="activeNivel(i)">{{nivel.name}}</ion-label>
+                </ion-col>
+            </ion-row>
+            <ion-row><ion-label>TIPO</ion-label></ion-row>
+            <ion-row>
+                <ion-col *ngFor="let tipo of tipos; let j = index">
+                    <ion-icon name="checkmark-outline" (click)="activeTipo(j)" [ngClass]="{'active':tipo.active}"></ion-icon>
+                    <ion-label (click)="activeTipo(j)">{{tipo.name}}</ion-label>
+                </ion-col>
+            </ion-row>
+            <ion-row><ion-label>DISTANCIA</ion-label></ion-row>
+            <ion-row>
+                <ion-col>
+                        <ion-range mode="md" min="1" max="500" step="10" pin="true">
+                            <ion-label slot="start">1 Km</ion-label>
+                            <ion-label slot="end">+500 Km</ion-label>
+                        </ion-range>
+                </ion-col>
+            </ion-row>
+            <ion-row><ion-label>DURACION</ion-label></ion-row>
+            <ion-row>
+                <ion-col>
+                        <ion-range mode="md" min="1" max="12" step="1" pin="true">
+                            <ion-label slot="start">1 mes</ion-label>
+                            <ion-label slot="end">+12 meses</ion-label>
+                        </ion-range>
+                </ion-col>
+            </ion-row>
+            <ion-row><ion-label>REMUNERACION ECONOMICA</ion-label></ion-row>
+            <ion-row>
+                <ion-col>
+                        <ion-range mode="md" min="0" max="50k" step="1" pin="true">
+                            <ion-label slot="start">$0</ion-label>
+                            <ion-label slot="end">$+50k</ion-label>
+                        </ion-range>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </div> -->
+<h2>Para ti:
+  <div class="line2"></div>
+</h2>
+  <ion-slides pager="true" [options]="slideOpts">
+    <ion-slide *ngFor="let card of cards; let i = index" [ngStyle]="{'background-image':'url('+card.img+')'}">
+
+      <div class="offer-cards" >
+        <ion-card>
+          <ion-grid (click)="cardPressed(card)">
+            <ion-row>
+              <ion-col size="3" style="margin: auto;">
+                <ion-img style="border-radius: 100% !important; transform: scale(.8); overflow: hidden;" [src]="card.logo"></ion-img>
+              </ion-col>
+              <ion-col style="padding-top: 15px;">
+                <ion-row>
+                  <ion-card-title>{{card.title}}</ion-card-title>
+                </ion-row>
+                <ion-row>
+                  <p>{{card.location}}</p>
+                </ion-row>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-chip color="warning">
+                <ion-icon name="star"></ion-icon>
+                <ion-label>Featured</ion-label>
+              </ion-chip>
+              <ion-chip color="secondary">
+                <ion-label>{{card.aofi}}</ion-label>
+              </ion-chip>
+            </ion-row>
+          </ion-grid>
+
+        </ion-card>
+      </div>
+
+    </ion-slide>
+  </ion-slides>
+
+  <!-- <div class="featured-cards">
+        <div class="featured-card"></div>
+        <div class="featured-card"></div>
+    </div> -->
+
+  <!-- <ion-button (click)="createOffer()">
+    Crear Offer
+  </ion-button> -->
+
+<!-- ----------------------------------------------- TARJETAS PRINCIPALES -------------------------------------------------------->
+
+  <h2>Explora:
+    <div class="line1"></div>
+  </h2>
+
+  <div class="offer-cards" *ngFor="let Offer of Offers; let i = index; last as isLast">
+    <div class="scrollmenu">
+      <ion-chip *ngIf="Offer.payment" color="success" (click)="goToInterests('$', 'cost', Offers)">
+        <ion-label>$</ion-label>
+      </ion-chip>
+      <ion-chip *ngIf="Offer.featured" color="warning" (click)="goToInterests('Featured','feat', Offers)">
+        <ion-icon name="star"></ion-icon>
+        <ion-label>Featured</ion-label>
+      </ion-chip>
+      <ion-chip color="secondary" (click)="goToInterests(Offer['aofi'],'aofi', Offers)">
+        <ion-label>{{Offer['aofi']}}</ion-label>
+      </ion-chip>
+      <ion-chip *ngFor="let SofI of Offer['sofi']" color="tertiary" (click)="goToInterests(SofI,'sofi',Offers)">
+        <ion-label>{{SofI}}</ion-label>
+      </ion-chip>
+    </div>
+
+
+    <ion-card  [ngClass]="{'last': isLast}">
+      <ion-card-header>
+        <ion-grid>
+          <ion-row>
+            <ion-col size="3" style="margin: auto;">
+              <ion-img style="border-radius: 100% !important; transform: scale(.8); overflow: hidden;" [src]="Offer.logo"></ion-img>
+            </ion-col>
+            <ion-col style="padding-top: 15px;" (click)="cardPressed(Offer)">
+              <ion-row>
+                <ion-card-title>{{Offer.title}}</ion-card-title>
+              </ion-row>
+              <ion-row>
+                <p>{{Offer.location}}</p>
+              </ion-row>
+            </ion-col>
+            <ion-col size="1">
+              <ion-icon (click)="offerService.favorite(Offer)" style="float: right; font-size: 1.5rem;" color={{Offer.icon.color}} name={{Offer.icon.name}}></ion-icon>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-header>
+
+      <ion-card-content>
+        {{Offer.content}}
+      </ion-card-content>
+
+      <div class="chips" (click)="cardPressed(Offer)">
+        <ion-chip>
+          <ion-icon name="glasses-outline" color="medium"></ion-icon>
+          <ion-label>{{Offer.level}}</ion-label>
+        </ion-chip>
+        <ion-chip>
+          <ion-icon name="time-outline" color="medium"></ion-icon>
+          <ion-label>{{Offer.duration}}</ion-label>
+        </ion-chip>
+        <ion-chip>
+          <ion-icon name="calendar-outline" color="medium"></ion-icon>
+          <ion-label>{{Offer.date | date: 'dd/MM/yy'}}</ion-label>
+        </ion-chip>
+      </div>
+    </ion-card>
+
+
+  </div>
+
+</ion-content>

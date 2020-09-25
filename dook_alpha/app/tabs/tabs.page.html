@@ -1,0 +1,35 @@
+
+<ion-tabs #Tabs (ionTabsWillChange)="ionTabsWillChange($event)" >
+
+  
+  
+  <ion-tab-bar slot="bottom" class="tabs" [ngClass]="{'hide': hide, 'show': show}">
+
+    <ion-tab-button tab="tab2" [ngClass]="{'selected':activeTab=='tab2'}">
+      <ion-icon name="home-outline" *ngIf="activeTab != 'tab2'"></ion-icon>
+      <ion-icon name="home" *ngIf="activeTab == 'tab2'"></ion-icon> 
+    </ion-tab-button>
+    
+    <ion-tab-button tab="tab1" [ngClass]="{'selected':activeTab=='tab1'}">
+      <ion-icon name="search-outline" *ngIf="activeTab != 'tab1'"></ion-icon>
+      <ion-icon name="search" *ngIf="activeTab == 'tab1'"></ion-icon> 
+ 
+    </ion-tab-button>
+
+
+    <ion-tab-button disabled tab="tab3" [ngClass]="{'selected':activeTab=='tab3'}">
+      <ion-icon name="notifications-outline" *ngIf="activeTab != 'tab3'"></ion-icon>
+      <ion-icon name="notifications" *ngIf="activeTab == 'tab3'"></ion-icon> 
+      <ion-badge *ngIf="activeTab != 'tab3'">6</ion-badge>
+    </ion-tab-button>
+
+    <ion-tab-button tab="tab4" [ngClass]="{'selected':activeTab=='tab4'}">
+      <ion-avatar>
+        <img *ngIf="user_photoURL != null" src="{{user_photoURL}}">
+      </ion-avatar>
+    </ion-tab-button>
+
+    
+
+  </ion-tab-bar>
+</ion-tabs>

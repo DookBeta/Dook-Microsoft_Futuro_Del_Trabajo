@@ -1,0 +1,54 @@
+
+
+<ion-content>
+    <h2>
+        <b>6</b> notificaciones
+    </h2>
+    <ion-list lines="none">
+        <ion-item-divider>
+          <ion-label style="color:var(--ion-color-dook)">Lunes</ion-label>
+          <ion-label color="medium">
+            15 de junio
+          </ion-label>
+          <ion-chip slot="end" style="transform: scale(.7);">
+            <ion-label>
+              Borrar todas
+            </ion-label>
+            <ion-icon name="close-outline"></ion-icon>
+          </ion-chip>
+        </ion-item-divider>
+        <ion-item-sliding>
+          <ion-item-options side="start">
+            <ion-item-option color="secondary" expandable>
+              <ion-icon name="share-social-outline"></ion-icon>
+            </ion-item-option>
+          </ion-item-options>
+          <ion-item>
+            <ion-grid>
+              <ion-row>
+                <ion-col size=3>
+                  <div class="notification">
+                    <ion-icon name="today-outline"></ion-icon>
+                  </div>
+                </ion-col>
+                <ion-col style="text-align:left;display: grida;">
+                  <ion-row>
+                    <ion-label>Titulo</ion-label>
+                  </ion-row>
+                  <ion-row>
+                    <ion-label>Descripcion</ion-label>
+                  </ion-row>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-item>
+          <ion-item-options side="end">
+            <ion-item-option color="danger" expandable>
+              <ion-icon name="trash-outline"></ion-icon>
+              <ion-label>Borrar</ion-label>
+            </ion-item-option>
+          </ion-item-options>
+        </ion-item-sliding>
+      </ion-list>
+
+</ion-content>

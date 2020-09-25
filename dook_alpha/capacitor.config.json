@@ -1,0 +1,8 @@
+{
+  "appId": "idook.alpha.starter",
+  "appName": "Dook",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www",
+  "cordova": {}
+}

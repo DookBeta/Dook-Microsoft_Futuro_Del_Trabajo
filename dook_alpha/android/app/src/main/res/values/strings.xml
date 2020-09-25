@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Dook</string>
+    <string name="title_activity_main">Dook</string>
+    <string name="package_name">dook.alpha.starter</string>
+    <string name="custom_url_scheme">dook.alpha.starter</string>
+</resources>

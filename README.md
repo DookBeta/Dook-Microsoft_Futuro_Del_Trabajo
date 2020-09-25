@@ -2,7 +2,7 @@
 
 ¡ Bienvenidos al Repositorio de Dook !
 
-a) DahboardDook - Web platform that runs with ATOM and offereded to Small to Medium Sized companies as a service to upload vacancies. 
+a) Dahsboard - Web platform that runs with ATOM and offereded to Small to Medium Sized companies as a service to upload vacancies. 
 
 b) LandingPageDook - Our Application Landing Page dookapp.com
 

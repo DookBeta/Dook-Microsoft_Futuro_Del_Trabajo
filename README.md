@@ -25,7 +25,7 @@ https://docs.google.com/document/d/1at4NWRh3DYhW2ezqUoEqyBslCUvbRdadii0pUfk_TvE/
 Modelo de negocios: 
 https://drive.google.com/drive/folders/1nO56IVgcsCrSzWgaxvpQGRcb86y6aPOw
 
-Además, anexamos las siguientes evidencias del trabajo realizado en Call4Code en las siguientes subcarpetas:
+Además, anexamos las siguientes evidencias del trabajo realizado en las siguientes subcarpetas:
 
 Subcarpeta 1: Recursos y Literatura
 

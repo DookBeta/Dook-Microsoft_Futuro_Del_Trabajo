@@ -1,0 +1,33 @@
+<ion-content>
+  <div class="title">
+    <img src="../../assets/images/dook_logo.svg">
+    <h1>Bienvenido.<br>Inicia Sesión</h1>
+  </div>
+  <div class="inputs">
+    <ion-item>
+      <ion-label position="floating">Email</ion-label>
+      <ion-input (ionBlur)="focus = true" (ionFocus)="focus = false" type="text" #email required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Password</ion-label>
+      <ion-input (ionBlur)="focus = true" (ionFocus)="focus = false" type="password" #password required></ion-input>
+    </ion-item>
+    <ion-button style="min-height: 50px;" expand="block" type="submit" (click)="logIn(email, password)">
+      Iniciar Sesión
+    </ion-button>
+    <div class="hyperlinks">
+      <ion-item lines="none" style="font-size: 15px;">
+        <ion-label (click)="router.navigateByUrl('registration')">Registrarme</ion-label>
+        <ion-label (click)="router.navigateByUrl('recover')">Olvidé mi contraseña</ion-label>
+      </ion-item>
+    </div>
+  </div>
+
+    <!-- <ion-button type="submit" style="--background-color:#3b5998" (click)="authService.GoogleAuth(); presentLoading();"
+      expand="full">
+      <ion-icon name="logo-facebook"></ion-icon>
+    </ion-button>
+    <ion-button type="submit" color="dark" expand="full">
+      <ion-icon name="logo-apple"></ion-icon>
+    </ion-button> -->
+</ion-content>

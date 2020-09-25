@@ -1,0 +1,212 @@
+<ion-toolbar>
+  <ion-buttons slot="primary">
+    <ion-button color="dark" (click)="presentActionSheet()">
+      <ion-icon slot="icon-only" name="ellipsis-horizontal"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+</ion-toolbar>
+
+<canvas #userSkills style="margin-bottom:30px; margin-top:20px;" [ngClass]="{'transform':transform}"></canvas>
+<!-- <div class="closedChart"  *ngIf='transform'>
+  <h1>Mapa de habilidades</h1>
+  <ion-icon name="arrow-down-outline"></ion-icon>
+</div> -->
+
+
+<ion-segment value="myinfo" [(ngModel)]="selected" (ionChange)="segmentChanged($event)" mode="ios"
+  [ngClass]="{'transform':transform}">
+  <ion-segment-button value="myinfo">
+    <ion-label>Sobre Mi</ion-label>
+    <svg [ngClass]="{hide:selected != 'myinfo'}" height="15" width="25">
+      <circle cx=10 cy=5 r="3" fill="var(--ion-color-dark)" />
+    </svg>
+  </ion-segment-button>
+  <ion-segment-button value="fav">
+    <ion-label>Favoritos</ion-label>
+    <svg [ngClass]="{hide:selected != 'fav'}" height="15" width="25">
+      <circle cx=10 cy=5 r="3" fill="var(--ion-color-dark)" />
+    </svg>
+  </ion-segment-button>
+</ion-segment>
+
+
+<ion-content [ngClass]="{'transform':transform}">
+
+  <div *ngIf="selected == 'myinfo'" class="scrollContent">
+    <div class="section">
+      <h2 #trigger>
+        Historia Academica
+      </h2>
+      <div *ngIf="userData.histAcademica.length>0">
+        <ion-card *ngFor="let element of userData['histAcademica'];" (click)="addElementModal(element,'education')">
+          <ion-grid>
+            <ion-row>
+              <ion-col style="margin: auto;" size-sm><img class="logo" src={{element.logo}}></ion-col>
+              <ion-col size-md style="max-width: 172px;">
+                <ion-row>
+                  <p style="text-align: left; white-space: nowrap;
+                overflow: hidden; text-overflow: ellipsis;"><b>{{element.name}}</b><br>{{element.career}}</p>
+                </ion-row>
+              </ion-col>
+              <ion-col size-sm>
+                <p class="date">{{element.timeStart | date: 'yyyy'}}-{{element.timeEnd | date: 'yyyy'}}</p>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card>
+      </div>
+
+      <ion-chip outline color="primary" style="margin-bottom: 10px; transform: scale(.8);"
+        (click)="addElementModal('','education')">
+        <ion-icon name="add-outline"></ion-icon>
+        <ion-label>Registrar Educacíon</ion-label>
+      </ion-chip>
+
+      <div class="divider"></div>
+
+    </div>
+
+    <div class="section">
+      <h2>
+        Experiencias
+      </h2>
+
+      <div class="card-scroll">
+        <ion-card class="add-experience_card" (click)="addElementModal(null,'experience')">
+          <ion-icon name="add-circle-outline"></ion-icon>
+        </ion-card>
+        <ion-card class="experience_card" (click)="addElementModal(element,'experience')"
+          *ngFor="let element of userData.experiencias">
+          <div>
+            <ion-label>
+              <ion-icon name="shapes-outline"></ion-icon><br>{{element.name}}
+            </ion-label>
+          </div>
+        </ion-card>
+      </div>
+
+      <div class="divider"></div>
+
+    </div>
+
+    <div class="section">
+      <h2>
+        Intereses
+      </h2>
+      <div class="intereses">
+        <ion-chip color="tertiary" disabled *ngFor="let interes of userData.intereses"
+          (click)="deleteInterest(interes)">
+          {{interes}}
+        </ion-chip>
+      </div>
+
+      <ion-chip outline color="primary" style="margin-bottom: 10px; transform: scale(.8);"
+        (click)="addElementModal('element','interest')">
+        <ion-icon name="add-outline"></ion-icon>
+        <ion-label>Agregar Interes</ion-label>
+      </ion-chip>
+
+      <div class="divider"></div>
+
+      <div class="section">
+        <h2>
+          Habilidades
+        </h2>
+        <div class="intereses">
+          <ion-chip color="warning" disabled *ngFor="let habilidad of userData.habilidades"
+            (click)="deleteSkill(habilidad)">
+            {{habilidad}}
+          </ion-chip>
+        </div>
+
+        <ion-chip outline color="primary" style="margin-bottom: 10px; transform: scale(.8);"
+          (click)="addElementModal('element','skill')">
+          <ion-icon name="add-outline"></ion-icon>
+          <ion-label>Agregar Habilidad</ion-label>
+        </ion-chip>
+
+        <div class="divider"></div>
+      </div>
+
+      <div class="section">
+        <h2>
+          Idiomas
+        </h2>
+        <div class="card-scroll idiomas">
+          <ion-card (click)="addElementModal(this.userData.idiomas,'idioma')">
+            <ion-icon name="add-circle-outline"></ion-icon>
+          </ion-card>
+          <ion-card *ngFor="let language of userData.idiomas" (click)="deleteLanguage(language)"
+            style="width: fit-content;">
+            <ion-icon name="globe-outline" style="padding-top: 10px;"></ion-icon>
+            <ion-label style="display: block;
+            text-align: center;
+            margin-left: 10px;
+            margin-right: 10px;">{{language}}</ion-label>
+          </ion-card>
+        </div>
+
+      </div>
+
+
+
+    </div>
+  </div>
+
+
+  <ion-list *ngIf="selected=='fav'" class="scrollContent"
+    style="background-color: var(--ion-background-color);text-align: center;margin-top: 10px;margin-bottom: 15vh;">
+    <div *ngIf="favorites.length <= 0" #trigger>
+
+      <img width=70%; src="../../assets/images/sin_favoritos.svg">
+      <ion-label style="display: block;"><b>No hay proyectos favoritos :(</b><br>Presiona el icono <ion-icon
+          name="heart-outline" color="dark" style="vertical-align: bottom;"></ion-icon> para agregar a favoritos!
+      </ion-label>
+    </div>
+    <div *ngIf="favorites.length > 0" #trigger>
+      <div class="offer-cards" *ngFor="let Offer of favorites; let last = last" [ngClass]="{'last': last}">
+        <ion-card>
+          <ion-card-header>
+            <ion-grid>
+              <ion-row>
+                <ion-col size="3" style="margin: auto;">
+                  <ion-img style="border-radius: 100% !important; transform: scale(.8); overflow: hidden;"
+                    [src]="Offer.logo"></ion-img>
+                </ion-col>
+                <ion-col style="padding-top: 15px;" (click)="cardPressed(Offer)">
+                  <ion-row>
+                    <ion-card-title>{{Offer.title}}</ion-card-title>
+                  </ion-row>
+                  <ion-row>
+                    <p>{{Offer.location}}</p>
+                  </ion-row>
+                </ion-col>
+                <ion-col size="1">
+                  <ion-icon (click)="offer.favorite(Offer); getFavorites()" style="float: right; font-size: 1.5rem;"
+                    color={{Offer.icon.color}} name={{Offer.icon.name}}></ion-icon>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-card-header>
+
+          <div class="chips" (click)="cardPressed(Offer)">
+            <ion-chip>
+              <ion-icon name="glasses-outline" color="medium"></ion-icon>
+              <ion-label>{{Offer.level}}</ion-label>
+            </ion-chip>
+            <ion-chip>
+              <ion-icon name="time-outline" color="medium"></ion-icon>
+              <ion-label>{{Offer.duration}}</ion-label>
+            </ion-chip>
+            <ion-chip>
+              <ion-icon name="calendar-outline" color="medium"></ion-icon>
+              <ion-label>{{Offer.date | date: 'dd/MM/yy'}}</ion-label>
+            </ion-chip>
+          </div>
+        </ion-card>
+      </div>
+    </div>
+  </ion-list>
+  <a href="https://clearbit.com" style="opacity: .2; color: grey;">Logos provided by Clearbit</a>
+
+</ion-content>

@@ -1,0 +1,73 @@
+ion-card{
+    margin-top: 0;
+    border-radius: 15px;
+    font-family: "Brandon Grotesque";
+    ion-card-title{
+        font-size: 17px;
+        font-weight: 500;
+    }
+    ion-card-header{
+        padding:0;
+    }
+    p{
+        font-size: 12px;
+        font-weight: 400;
+        margin-top: 0;
+        color: #8C8C8C;
+    }
+    ion-card-content{
+        overflow: hidden;
+        text-overflow: ellipsis;
+        padding-bottom: 0;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2; /* number of lines to show */
+    }
+}
+
+ion-grid.icons{
+    --ion-grid-columns: 20;
+    margin-left: 5vw;
+    color: black;
+    ion-icon{
+        font-size: 25px;
+        display: inline-block;
+        vertical-align: middle;
+        margin-right: 3vw;
+    }
+    ion-label{
+        text-align: center;
+        vertical-align: middle;
+        display: inline-block;
+    }
+}
+
+
+div.scrollmenu {
+    overflow-x: scroll;
+    white-space: nowrap;
+    width: calc(100% - 32px);
+    position: relative;
+    left: 16px;
+  }
+  
+  div.scrollmenu ion-chip {
+    display: inline-block;
+    
+  }
+
+  ::-webkit-scrollbar {
+    display: none;
+}
+ 
+
+.chips{
+    text-align: center;
+    margin-bottom: 1vh;
+    margin-top: 1vh;
+    ion-chip{
+        font-family: "Brandon Grotesque";
+        font-weight: 400;
+        --background: none;
+    }
+}

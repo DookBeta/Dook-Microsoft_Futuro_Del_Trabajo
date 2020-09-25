@@ -1,0 +1,305 @@
+:host {
+    background-color: var(--ion-color-light);
+}
+
+ion-toolbar {
+    --background: transparent;
+}
+
+.closedChart {
+    text-align: center;
+    h1 {
+        margin: 0;
+    }
+}
+
+canvas {
+    position: absolute;
+    transition: linear 0.25s;
+}
+
+.logo {
+    border-radius: 100%;
+    margin: auto;
+    transform: scale(0.75);
+}
+
+.university {
+    font-weight: bold;
+}
+.date {
+}
+
+.offer-cards {
+    overflow: scroll;
+    ion-card {
+        margin-top: 0;
+        border-radius: 15px;
+        font-family: "Brandon Grotesque";
+        ion-card-title {
+            font-size: 17px;
+            font-weight: 500;
+        }
+        ion-card-header {
+            padding: 0;
+        }
+        p {
+            font-size: 12px;
+            font-weight: 400;
+            margin-top: 0;
+            color: #8c8c8c;
+        }
+        ion-card-content {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            padding-bottom: 0;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2; /* number of lines to show */
+        }
+    }
+
+    .last {
+        margin-bottom: 80px;
+    }
+
+    ion-grid.icons {
+        --ion-grid-columns: 20;
+        margin-left: 5vw;
+        color: black;
+        ion-icon {
+            font-size: 25px;
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 3vw;
+        }
+        ion-label {
+            text-align: center;
+            vertical-align: middle;
+            display: inline-block;
+        }
+    }
+
+    .chips {
+        text-align: center;
+        margin-bottom: 1vh;
+        margin-top: 1vh;
+        ion-chip {
+            font-family: "Brandon Grotesque";
+            font-weight: 400;
+            --background: none;
+        }
+    }
+}
+
+canvas.transform {
+    opacity: 0;
+    transform: translate3d(0, -15vh, 0);
+    transition: linear 0.25s;
+}
+
+.scrollContent {
+    overflow: scroll;
+    padding-bottom: 15vh;
+    height: 100%;
+}
+
+.section {
+    h2 {
+        font-family: "Montserrat";
+        font-weight: bold;
+        font-size: 1em;
+        margin-bottom: 0;
+        text-align: left;
+        margin-left: 20px;
+    }
+    .line {
+        margin: 5px;
+        margin-left: 20px;
+        width: 30vw;
+        height: 4px;
+        border-radius: 10px;
+        background-color: var(--ion-color-primary-shade);
+    }
+    .exp {
+        width: 17vw;
+        background-color: var(--ion-color-secondary-shade);
+    }
+    .int {
+        width: 12vw;
+        background-color: var(--ion-color-tertiary-shade);
+    }
+    .idm {
+        width: 8vw;
+        background-color: var(--ion-color-warning-shade);
+    }
+    .hab {
+        width: 15vw;
+        background-color: var(--ion-color-success-shade);
+    }
+    text-align: center;
+    ion-card {
+        background-color: var(--ion-color-light);
+        margin-right: 20px;
+        margin-bottom: 20px;
+        margin-left: 20px;
+        border-radius: 15px;
+        ion-grid.flip {
+            opacity: 0;
+        }
+    }
+
+    .divider {
+        height: 1px;
+        width: 100%;
+        background-color: var(--ion-color-light-tint);
+    }
+}
+.add-experience_card {
+    display: inline-block;
+    height: 30vw;
+    width: 30vw;
+    margin-right: 0;
+    ion-icon {
+        font-size: 20px;
+        position: relative;
+        top: calc(50% - 10px);
+        left: calc(50% - 10px);
+    }
+}
+.experience_card {
+    display: inline-block;
+    height: 30vw;
+    width: 30vw;
+    color: #5d7575 !important;
+    background-color: #aacfcf !important;
+    margin-left: 5px !important;
+    div {
+        top: 25%;
+        position: relative;
+        margin: auto;
+        text-align: center;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    ion-icon {
+        font-size: 2.5rem;
+    }
+}
+.card-scroll {
+    overflow-x: scroll;
+    white-space: nowrap;
+    text-align: left;
+}
+
+.idiomas {
+    ion-card {
+        display: inline-block;
+        margin-right: 0;
+        height: 15vw;
+        width: 15vw;
+        ion-icon {
+            width: 100%;
+            margin: auto;
+            position: relative;
+            top: 40%;
+        }
+    }
+}
+
+.intereses {
+    overflow: hidden;
+    white-space: normal;
+    text-align: left;
+    padding: 10px;
+    .interes {
+        --background: var(--ion-color-light);
+        --color: var(--ion-color-tertiary-tint);
+        border-radius: 20px;
+        width: fit-content;
+        margin: 10px;
+        margin-top: 5px;
+        margin-bottom: 1px;
+        padding-top: 3px;
+        padding-bottom: 3px;
+        padding-left: 10px;
+        padding-right: 10px;
+        display: inline-block;
+    }
+}
+
+.progress {
+    ion-chip.transform {
+        transform: translate3d(0, 0, 0);
+        transition: linear 0.25s;
+        background-color: var(--ion-color-light);
+        color: var(--ion-color-dark);
+    }
+
+    ion-chip {
+        transform: translate3d(0, 25vh, 0);
+    }
+}
+
+ion-segment {
+    --background: transparent;
+    padding-top: 15px;
+    transform: translate3d(0, 25vh, 0);
+    ion-segment-button {
+        position: sticky;
+        --color-checked: var(--ion-color-dark);
+        --color: var(--ion-color-medium-tint);
+        --indicator-color: none;
+        --border-color: none;
+        --border-width: 0;
+        --background-checked: none;
+        --background-focused-opacity: 0;
+        --background-focused: none;
+        --indicator-height: 0px;
+        --indicator-box-shadow: none;
+        --background-checked: none;
+        --background-focused: none;
+        font-family: "Neue Haas Grotesk Display Pro";
+        font-weight: bold;
+        svg {
+            transition: cubic-bezier(0.6, -0.28, 0.735, 0.045) 0.4s;
+            transform: translateY(0);
+        }
+        svg.hide {
+            transition: cubic-bezier(0.6, -0.28, 0.735, 0.045) 0.4s;
+            transform: translateY(50px);
+        }
+        ion-label.ios {
+            padding-bottom: 1.6vh;
+        }
+    }
+}
+
+ion-segment.transform {
+    transform: translate3d(0, 0, 0);
+    transition: linear 0.25s;
+}
+
+ion-content {
+    transform: translate3d(0, 25vh, 0);
+    padding-bottom: 25vh;
+}
+
+ion-content.transform {
+    transform: translate3d(0, 0, 0);
+    transition: linear 0.25s;
+}
+
+.useropts {
+    ion-list {
+        background: none;
+        ion-item {
+            --background: var(--ion-background-color);
+            ion-label {
+                font-family: "Neue Haas Grotesk Display Pro" !important;
+                font-weight: 400;
+            }
+        }
+    }
+}
